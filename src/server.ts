@@ -9,6 +9,7 @@ const app: express.Application = express();
 app.use(express.json());
 
 // middleware
+// security
 app.use(helmet());
 app.use(morgan('dev'));
 
