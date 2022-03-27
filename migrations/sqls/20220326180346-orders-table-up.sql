@@ -1,3 +1,4 @@
+DROP TYPE IF EXISTS status;
 CREATE TYPE status AS ENUM ('active', 'complete');
 CREATE TABLE orders (
     id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,

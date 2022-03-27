@@ -9,7 +9,6 @@ const app: express.Application = express();
 app.use(express.json());
 
 // middleware
-// security
 app.use(helmet());
 app.use(morgan('dev'));
 
@@ -45,3 +44,5 @@ const port = parseInt(process.env.PORT as string, 10) || 3000;
 app.listen(port, function () {
   console.log(`starting app on: http://localhost:${port}`);
 });
+
+export default app;
