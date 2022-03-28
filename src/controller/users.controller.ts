@@ -24,7 +24,8 @@ export const createRequestedUser = async (req: Request, res: Response) => {
     } else {
       // if email exists in our database
       res.json({
-        message: 'Email already exist please try to log in'
+        message:
+          'Email already exists please try to log in, or try another email'
       });
     }
   } catch (error) {

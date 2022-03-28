@@ -18,7 +18,7 @@ class UserModel {
       // conect with data base and create query
       const connection = await db.connect();
       const newUser = await connection.query(
-        'INSERT INTO users (email, firstname, lastname, username, password) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+        'INSERT INTO users (email, firstname, lastname, username, password) VALUES ($1, $2, $3, $4, $5) RETURNING id, email, firstname, lastname, username',
         [u.email, u.firstname, u.lastname, u.username, hash(u.password)]
       );
       // release connection
@@ -67,7 +67,7 @@ class UserModel {
       // conect with data base and create query
       const connection = await db.connect();
       const updateUser = await connection.query(
-        'UPDATE users SET email=$1, firstname=$2, lastname=$3, username=$4, password=$5 WHERE id=$6 RETURNING *',
+        'UPDATE users SET email=$1, firstname=$2, lastname=$3, username=$4, password=$5 WHERE id=$6 RETURNING id, email, firstname, lastname, username',
         [u.email, u.firstname, u.lastname, u.username, hash(u.password), id]
       );
       // release connection
