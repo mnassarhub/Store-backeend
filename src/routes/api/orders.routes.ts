@@ -5,7 +5,7 @@ import authentication from '../../middleware/authentication.middleware';
 const routes = Router();
 
 routes.post('/', authentication, controllers.createOrder);
-routes.get('/all_orders/:user_id', authentication, controllers.getAllOrders);
+routes.get('/:user_id/all_orders/', authentication, controllers.getAllOrders);
 routes.get(
   '/active_orders/:user_id',
   authentication,

@@ -26,7 +26,7 @@ class UserModel {
       // return created user
       return newUser.rows[0];
     } catch (error) {
-      throw `Unable to create ${u.username} accourding to ${error}`;
+      throw error;
     }
   }
   //    get all users

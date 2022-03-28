@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import UserModel from '../model/user.model';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import { emailValidator } from '../middleware/emailValidator.middleware';
 
 dotenv.config();
 
@@ -10,12 +11,22 @@ const userModel = new UserModel();
 // create user
 export const createRequestedUser = async (req: Request, res: Response) => {
   try {
-    const newUser = await userModel.createUser(req.body);
-    res.json({
-      message: 'New User Successfully Created with down data',
-      data: { ...newUser }
-    });
-    console.table(newUser);
+    const { email } = req.body;
+    // check if email existed in our database
+    if ((await emailValidator(email)) == 'new email') {
+      // create new user
+      const newUser = await userModel.createUser(req.body);
+      res.json({
+        message: 'New User Successfully Created with down data',
+        data: { ...newUser }
+      });
+      console.table(newUser);
+    } else {
+      // if email exists in our database
+      res.json({
+        message: 'Email already exist please try to log in'
+      });
+    }
   } catch (error) {
     throw error;
   }
