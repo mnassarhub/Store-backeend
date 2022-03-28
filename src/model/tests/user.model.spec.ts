@@ -103,6 +103,25 @@ describe('user model', () => {
       expect(returnedUser.username).toBe(user.username);
     });
 
+    it('Should Successfully Pass Test and return user with edited attributes', async () => {
+      const updatedUser = await userModel.updateUser(
+        user.id as unknown as string,
+        {
+          ...user,
+          email: 'test22@test.com',
+          firstname: 'userFname22',
+          lastname: 'userLname22',
+          username: 'userName22',
+          password: 'test12322'
+        }
+      );
+      expect(updatedUser.id).toBe(user.id);
+      expect(updatedUser.email).toBe('test22@test.com');
+      expect(updatedUser.firstname).toBe('userFname22');
+      expect(updatedUser.lastname).toBe('userLname22');
+      expect(updatedUser.username).toBe('userName22');
+    });
+
     it('Should Successfully Pass Test and delete user from DB', async () => {
       const deletedUser = await userModel.deleteUser(user.id as string);
       expect(deletedUser.id).toBe(user.id);

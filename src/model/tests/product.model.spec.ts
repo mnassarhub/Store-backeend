@@ -57,8 +57,8 @@ describe('product model', () => {
     });
 
     it('Should Successfully Pass Test and return all available products in DB', async () => {
-      const users = await productModel.getAllProducts();
-      expect(users.length).toBe(2);
+      const products = await productModel.getAllProducts();
+      expect(products.length).toBe(2);
     });
 
     it('Should Successfully Pass Test and return testProduct when called with ID', async () => {
@@ -68,6 +68,19 @@ describe('product model', () => {
       expect(returnedProduct.id).toBe(product.id);
       expect(returnedProduct.productname).toBe(product.productname);
       expect(returnedProduct.price).toBe(product.price);
+    });
+
+    it('Should Successfully Pass Test and return product with edited attributes', async () => {
+      const updatedProduct = await productModel.updateProduct(
+        product.id as unknown as string,
+        {
+          ...product,
+          price: 22
+        }
+      );
+      expect(updatedProduct.id).toBe(product.id);
+      expect(updatedProduct.productname).toBe(product.productname);
+      expect(updatedProduct.price).toBe(22);
     });
 
     it('Should Successfully Pass Test and delete product from DB', async () => {
