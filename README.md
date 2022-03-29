@@ -1,54 +1,236 @@
-# Storefront Backend Project
+# Udacity: Build a Storefront Backend
 
-## Getting Started
+## Contents:
 
-This repo contains a basic Node and Express app to get you started in constructing an API. To get started, clone this repo and run `yarn` in your terminal at the project root.
+1-Description.
 
-## Required Technologies
-Your application must make use of the following libraries:
-- Postgres for the database
-- Node/Express for the application logic
-- dotenv from npm for managing environment variables
-- db-migrate from npm for migrations
-- jsonwebtoken from npm for working with JWTs
-- jasmine from npm for testing
+2-Project build depended on.
 
-## Steps to Completion
+3-Project Structure.
 
-### 1. Plan to Meet Requirements
+4-How To Use.
 
-In this repo there is a `REQUIREMENTS.md` document which outlines what this API needs to supply for the frontend, as well as the agreed upon data shapes to be passed between front and backend. This is much like a document you might come across in real life when building or extending an API. 
+5-Functionality and Endpoints.
 
-Your first task is to read the requirements and update the document with the following:
-- Determine the RESTful route for each endpoint listed. Add the RESTful route and HTTP verb to the document so that the frontend developer can begin to build their fetch requests.    
-**Example**: A SHOW route: 'blogs/:id' [GET] 
+6-Development.
 
-- Design the Postgres database tables based off the data shape requirements. Add to the requirements document the database tables and columns being sure to mark foreign keys.   
-**Example**: You can format this however you like but these types of information should be provided
-Table: Books (id:varchar, title:varchar, author:varchar, published_year:varchar, publisher_id:string[foreign key to publishers table], pages:number)
+## Description:
 
-**NOTE** It is important to remember that there might not be a one to one ratio between data shapes and database tables. Data shapes only outline the structure of objects being passed between frontend and API, the database may need multiple tables to store a single shape. 
+This is a backend API build in Nodejs for an online store. It exposes a RESTful API that will be used by the frontend developer on the frontend.
 
-### 2.  DB Creation and Migrations
+The database schema and and API route information can be found in the [REQUIREMENT.md](REQUIREMENTS.md)
 
-Now that you have the structure of the databse outlined, it is time to create the database and migrations. Add the npm packages dotenv and db-migrate that we used in the course and setup your Postgres database. If you get stuck, you can always revisit the database lesson for a reminder. 
+## Project build depended on
 
-You must also ensure that any sensitive information is hashed with bcrypt. If any passwords are found in plain text in your application it will not pass.
+- The language used and application logic
 
-### 3. Models
+1. [TypeScript] (https://www.typescriptlang.org/docs/)
+2. [Node.JS] (https://nodejs.org/dist/latest-v16.x/docs/api/)
+3. [Express] (https://expressjs.com/)
 
-Create the models for each database table. The methods in each model should map to the endpoints in `REQUIREMENTS.md`. Remember that these models should all have test suites and mocks.
+- For managing environment variables
 
-### 4. Express Handlers
+1. [dotenv] (https://www.npmjs.com/package/dotenv)
 
-Set up the Express handlers to route incoming requests to the correct model method. Make sure that the endpoints you create match up with the enpoints listed in `REQUIREMENTS.md`. Endpoints must have tests and be CORS enabled. 
+- For the database and migration
 
-### 5. JWTs
+1. [pg] (https://node-postgres.com/)
+2. [db-migrate] (https://db-migrate.readthedocs.io/en/latest/)
+3. [db-migrate-pg] (https://www.npmjs.com/package/db-migrate-pg)
 
-Add JWT functionality as shown in the course. Make sure that JWTs are required for the routes listed in `REQUIUREMENTS.md`.
+- For authentication and security
 
-### 6. QA and `README.md`
+1. [jsonwebtoken] (https://www.npmjs.com/package/jsonwebtoken)
+2. [bcrypt] (https://www.npmjs.com/package/bcrypt)
+3. [morgan] (https://www.npmjs.com/package/morgan)
+4. [helmet] (https://www.npmjs.com/package/helmet)
 
-Before submitting, make sure that your project is complete with a `README.md`. Your `README.md` must include instructions for setting up and running your project including how you setup, run, and connect to your database. 
+- For Fixing and Formatting Code
 
-Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
+1. [ESLint] (https://eslint.org/docs/user-guide/getting-started)
+2. [Prettier] (https://prettier.io/docs/en/index.html)
+
+- For Unit testing
+
+1. [Jasmine] (https://jasmine.github.io/)
+2. [supertest] (https://www.npmjs.com/package/supertest)
+
+## Project Structure
+
+```
+migrations
+    sqls
+        20220326180310-users-table-down.sql
+        20220326180310-users-table-up.sql
+        20220326180329-products-table-down.sql
+        20220326180329-products-table-up.sql
+        20220326180346-orders-table-down.sql
+        20220326180346-orders-table-up.sql
+    20220326180310-users-table.js
+    20220326180329-products-table.js
+    20220326180346-orders-table.js
+node_modules
+spec
+    support
+        jasmine.json
+src
+    controller
+        orders.controller.ts
+        products.controller.ts
+        users.controller.ts
+    database
+        database.ts
+    middleware
+        authentication.middleware.ts
+        emailValidator.middleware.ts
+    model
+        orders.model.ts
+        product.model.ts
+        user.model.ts
+    routes
+        api
+            orders.routes.ts
+            products.routes.ts
+            users.routes.ts
+        main.routes.ts
+    tests
+        helpers
+            reporter.ts
+        order.model.spec.ts
+        product.model.spec.ts
+        routes.spec.ts
+        server.Spec.ts
+        user.model.spec.ts
+    types
+        order.types.ts
+        product.types.ts
+        user.types.ts
+    server.ts
+.dockerignore
+.gitignore
+.eslintrc.js
+.prettierignore
+.prettierrrc
+CODEOWNERS
+database.json
+docker-compose.yml
+Dockerfile
+LICENSE.txt
+package-lock.json
+pachage.json
+README.md
+REQUIREMENTS.md
+tsconfig.json
+
+```
+
+## How To Use:
+
+### Create Databases
+
+We shall create the dev and test database.
+
+- connect to the default postgres database as the server's root user `psql -U postgres`
+- In psql run the following to create a user
+  - `CREATE USER store_user WITH PASSWORD 'password123';`
+- In psql run the following to create the dev and test database
+  - `CREATE DATABASE store;`
+  - `CREATE DATABASE store_test;`
+- Connect to the databases and grant all privileges
+  - Grant for dev database
+    - `\c store`
+    - `GRANT ALL PRIVILEGES ON DATABASE store TO store_user;`
+  - Grant for test database
+    - `\c store_test`
+    - `GRANT ALL PRIVILEGES ON DATABASE store_test TO store_user;`
+
+### Migrate Database
+
+Navigate to the root directory and run the command below to migrate the database
+
+`npm run migrateUp`
+
+### Enviromental Variables Set up
+
+Bellow are the environmental variables that needs to be set in a `.env` file. This is the default setting that I used for development, but you can change it to what works for you.
+
+**NB:** The given values are used in developement and testing but not in production.
+
+```
+PORT= 3000
+NODE_ENV=dev
+POSTGRES_DATABASE=store
+POSTGRES_TEST_DATABASE=store_test
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=123
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+BCRYPT_PASSWORD=more-safe
+SALT_ROUNDS=10
+SECRET_TOKEN=more-security
+
+```
+
+### NPM Scripts
+
+to build the project and use it do the following orders in terminal:
+
+- To install required packages: `npm install`
+
+- To create the tables of database by migrate: `db-migrate up` or `npm run migrateUp`
+
+- to drop tables: `db-migrate up`
+
+- to run test: `npm run test`
+
+- to start project development: `npm run dev`
+
+- to run and start the project: `npm run start`
+
+- to run Prettier and ESLint: `npm run format`
+
+## Functionality and Endpoints
+
+- Homepage Endpoint
+  `http://localhost:3000/`
+- User CRUD API EndPoints
+  Post - create user
+  `/api/users`
+  Get - get all users
+  `/api/users`
+  Get - get specified user
+  `/api/users/:id`
+  Patch - update specified user
+  `/api/users/:id`
+  Delete - delete specified user
+  `/api/users/:id`
+  Post - authentication
+  `/api/users/authenticate`
+- Product CRUD API End Points
+  Post - create product
+  `/api/products`
+  Get - get all products
+  `/api/products`
+  Get - get specified product
+  `/api/products/:id`
+  Patch - update specified product
+  `/api/products/:id`
+  Delete - delete specified product
+  `/api/products/:id`
+- Orders CRUD API End Points
+  Post - create order
+  `/api/orders`
+  Get - get all orders
+  `/api/orders/:user_id/all_orders/`
+  Get - get active orders for specified user
+  `/api/orders/:user_id/active/`
+  Get - get complete orders for specified user
+  `/api/orders/:user_id/complete/`
+  Patch - update specified order
+  `/api/orders/:user_id`
+  Delete - delete specified order
+  `/api/orders/:user_id`
+
+## Development:
+
+- Mohamed Nassar

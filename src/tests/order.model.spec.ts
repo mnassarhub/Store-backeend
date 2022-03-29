@@ -1,10 +1,10 @@
-import OrdertType from '../../types/order.types';
-import OrderModel from '../../model/orders.model';
-import UserType from '../../types/user.types';
-import UserModel from '../../model/user.model';
-import ProductType from '../../types/product.types';
-import ProductModel from '../../model/product.model';
-import db from '../../database/database';
+import OrdertType from '../types/order.types';
+import OrderModel from '../model/orders.model';
+import UserType from '../types/user.types';
+import UserModel from '../model/user.model';
+import ProductType from '../types/product.types';
+import ProductModel from '../model/product.model';
+import db from '../database/database';
 
 const userModel = new UserModel();
 const user = {
