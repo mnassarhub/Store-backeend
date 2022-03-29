@@ -6,13 +6,9 @@ const routes = Router();
 
 routes.post('/', authentication, controllers.createOrder);
 routes.get('/:user_id/all_orders/', authentication, controllers.getAllOrders);
+routes.get('/:user_id/active/', authentication, controllers.getAllActiveOrders);
 routes.get(
-  '/active_orders/:user_id',
-  authentication,
-  controllers.getAllActiveOrders
-);
-routes.get(
-  '/complete_orders/:user_id',
+  '/:user_id/complete/',
   authentication,
   controllers.getAllCompleteOrders
 );

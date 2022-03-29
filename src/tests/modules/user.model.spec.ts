@@ -1,5 +1,7 @@
 import UserType from '../../types/user.types';
-import UserModel from '../user.model';
+import UserModel from '../../model/user.model';
+import ProductType from '../../types/product.types';
+import ProductModel from '../../model/product.model';
 import db from '../../database/database';
 
 const userModel = new UserModel();

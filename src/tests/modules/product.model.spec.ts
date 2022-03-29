@@ -1,17 +1,17 @@
 import ProductType from '../../types/product.types';
-import ProductModel from '../product.model';
+import ProductModel from '../../model/product.model';
 import db from '../../database/database';
 
 const productModel = new ProductModel();
-const product = {
-  productname: 'test',
+const productTest = {
+  productname: 'book',
   price: 10
 } as ProductType;
 
 describe('product model', () => {
   beforeAll(async () => {
-    const createProduct = await productModel.createProduct(product);
-    product.id = createProduct.id;
+    const createNewProduct = await productModel.createProduct(productTest);
+    productTest.id = createNewProduct.id;
   });
 
   afterAll(async () => {
@@ -58,36 +58,36 @@ describe('product model', () => {
 
     it('Should Successfully Pass Test and return all available products in DB', async () => {
       const products = await productModel.getAllProducts();
-      expect(products.length).toBe(2);
+      expect(products.length).toBe(3);
     });
 
     it('Should Successfully Pass Test and return testProduct when called with ID', async () => {
       const returnedProduct = await productModel.getSpecificProduct(
-        product.id as string
+        productTest.id as string
       );
-      expect(returnedProduct.id).toBe(product.id);
-      expect(returnedProduct.productname).toBe(product.productname);
-      expect(returnedProduct.price).toBe(product.price);
+      expect(returnedProduct.id).toBe(productTest.id);
+      expect(returnedProduct.productname).toBe(productTest.productname);
+      expect(returnedProduct.price).toBe(productTest.price);
     });
 
     it('Should Successfully Pass Test and return product with edited attributes', async () => {
       const updatedProduct = await productModel.updateProduct(
-        product.id as unknown as string,
+        productTest.id as unknown as string,
         {
-          ...product,
+          ...productTest,
           price: 22
         }
       );
-      expect(updatedProduct.id).toBe(product.id);
-      expect(updatedProduct.productname).toBe(product.productname);
+      expect(updatedProduct.id).toBe(productTest.id);
+      expect(updatedProduct.productname).toBe(productTest.productname);
       expect(updatedProduct.price).toBe(22);
     });
 
     it('Should Successfully Pass Test and delete product from DB', async () => {
       const deletedUser = await productModel.deleteProduct(
-        product.id as string
+        productTest.id as string
       );
-      expect(deletedUser.id).toBe(product.id);
+      expect(deletedUser.id).toBe(productTest.id);
     });
   });
 });
