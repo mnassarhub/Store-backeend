@@ -1,6 +1,6 @@
 type ProductsType = {
   id?: string;
-  productname: string;
+  product_name: string;
   price: Number;
 };
 

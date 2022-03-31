@@ -3,6 +3,7 @@ type OrderType = {
   user_id: string;
   quantity: number;
   product_id: string;
+  product_price: number;
   status: 'active' | 'complete';
 };
 
