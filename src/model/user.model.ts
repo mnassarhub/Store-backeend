@@ -18,8 +18,8 @@ class UserModel {
       // conect with data base and create query
       const connection = await db.connect();
       const newUser = await connection.query(
-        'INSERT INTO users (email, firstname, lastname, username, password) VALUES ($1, $2, $3, $4, $5) RETURNING id, email, firstname, lastname, username',
-        [u.email, u.firstname, u.lastname, u.username, hash(u.password)]
+        'INSERT INTO users (email, first_name, last_name, user_name, password) VALUES ($1, $2, $3, $4, $5) RETURNING id, email, first_name, last_name, user_name',
+        [u.email, u.first_name, u.last_name, u.user_name, hash(u.password)]
       );
       // release connection
       connection.release();
@@ -35,7 +35,7 @@ class UserModel {
       // conect with data base and create query
       const connection = await db.connect();
       const getUsers = await connection.query(
-        'SELECT id, email, firstname, lastname, username FROM users'
+        'SELECT id, email, first_name, last_name, user_name FROM users'
       );
       connection.release();
       // return created user
@@ -50,7 +50,7 @@ class UserModel {
       // conect with data base and create query
       const connection = await db.connect();
       const getUser = await connection.query(
-        'SELECT id, email, firstname, lastname, username FROM users WHERE id=($1)',
+        'SELECT id, email, first_name, last_name, user_name FROM users WHERE id=($1)',
         [id]
       );
       // release connection
@@ -67,15 +67,15 @@ class UserModel {
       // conect with data base and create query
       const connection = await db.connect();
       const updateUser = await connection.query(
-        'UPDATE users SET email=$1, firstname=$2, lastname=$3, username=$4, password=$5 WHERE id=$6 RETURNING id, email, firstname, lastname, username',
-        [u.email, u.firstname, u.lastname, u.username, hash(u.password), id]
+        'UPDATE users SET email=$1, first_name=$2, last_name=$3, user_name=$4, password=$5 WHERE id=$6 RETURNING id, email, first_name, last_name, user_name',
+        [u.email, u.first_name, u.last_name, u.user_name, hash(u.password), id]
       );
       // release connection
       connection.release();
       // return created user
       return updateUser.rows[0];
     } catch (error) {
-      throw `Unable to update user ${u.username} accourding to ${error}`;
+      throw `Unable to update user ${u.user_name} accourding to ${error}`;
     }
   }
   //    delete user
@@ -114,7 +114,7 @@ class UserModel {
         );
         if (passwordValidation) {
           const userInfo = await connection.query(
-            'SELECT id, email, firstname, lastname, username FROM users WHERE email=($1)',
+            'SELECT id, email, first_name, last_name, user_name FROM users WHERE email=($1)',
             [email]
           );
           return userInfo.rows[0];

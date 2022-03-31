@@ -8,15 +8,15 @@ class ProductModel {
       // conect with data base and create query
       const connection = await db.connect();
       const newProduct = await connection.query(
-        'INSERT INTO products (productname, price) VALUES ($1, $2) RETURNING *',
-        [p.productname, p.price]
+        'INSERT INTO products (product_name, price) VALUES ($1, $2) RETURNING *',
+        [p.product_name, p.price]
       );
       // release connection
       connection.release();
       // return created products
       return newProduct.rows[0];
     } catch (error) {
-      throw `Unable to create ${p.productname} accourding to ${error}`;
+      throw `Unable to create ${p.product_name} accourding to ${error}`;
     }
   }
   //    get all products
@@ -24,9 +24,7 @@ class ProductModel {
     try {
       // conect with data base and create query
       const connection = await db.connect();
-      const getAllProducts = await connection.query(
-        'SELECT id, productname, price FROM products'
-      );
+      const getAllProducts = await connection.query('SELECT * FROM products');
       connection.release();
       // return created products
       return getAllProducts.rows;
@@ -57,15 +55,15 @@ class ProductModel {
       // conect with data base and create query
       const connection = await db.connect();
       const updateProduct = await connection.query(
-        'UPDATE products SET productname=$1, price=$2 WHERE id=$3 RETURNING *',
-        [p.productname, p.price, id]
+        'UPDATE products SET product_name=$1, price=$2 WHERE id=$3 RETURNING *',
+        [p.product_name, p.price, id]
       );
       // release connection
       connection.release();
       // return created product
       return updateProduct.rows[0];
     } catch (error) {
-      throw `Unable to update product ${p.productname} accourding to ${error}`;
+      throw `Unable to update product ${p.product_name} accourding to ${error}`;
     }
   }
   //    delete product
