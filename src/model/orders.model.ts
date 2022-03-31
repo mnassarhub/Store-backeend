@@ -3,7 +3,7 @@ import ProductOrdersType from '../types/productOrders.type';
 import db from '../database/database';
 
 class OrderModel {
-  // create order
+  //    create order
   async createOrder(user_id: string): Promise<OrderType> {
     try {
       // conect with data base and create query
@@ -113,7 +113,7 @@ class OrderModel {
       // conect with data base and create query
       const connection = await db.connect();
       const getProductsForOrder = await connection.query(
-        'SELECT * FROM product_orders WHERE order_id = $1',
+        'SELECT * FROM order_products WHERE order_id = $1',
         [order_id]
       );
       connection.release();
@@ -124,7 +124,7 @@ class OrderModel {
     }
   }
 
-  //  add product to order
+  //    add product to order
   async addProductToOrder(
     order_id: string,
     product_id: string,
@@ -134,7 +134,7 @@ class OrderModel {
       // conect with data base and create query
       const connection = await db.connect();
       const addProductToOrder = await connection.query(
-        'INSERT INTO product_orders (order_id, product_id, quantity) VALUES ($1, $2, $3) RETURNING *',
+        'INSERT INTO order_products (order_id, product_id, quantity) VALUES ($1, $2, $3) RETURNING *',
         [order_id, product_id, quantity]
       );
       // release connection
@@ -146,7 +146,7 @@ class OrderModel {
     }
   }
 
-  //  remove product from order
+  //    delete product from order
   async deleteProductFromOrder(
     order_id: string,
     product_id: string
@@ -155,7 +155,7 @@ class OrderModel {
       // conect with data base and create query
       const connection = await db.connect();
       const deleteProductFromOrder = await connection.query(
-        'DELETE FROM product_orders WHERE order_id = $1 AND product_id = $2 RETURNING *',
+        'DELETE FROM order_products WHERE order_id = $1 AND product_id = $2 RETURNING *',
         [order_id, product_id]
       );
       // release connection
@@ -167,7 +167,7 @@ class OrderModel {
     }
   }
 
-  // update product quantity in order
+  //    update product quantity in order
   async updateProductQuantityInOrder(
     order_id: string,
     product_id: string,
@@ -177,7 +177,7 @@ class OrderModel {
       // conect with data base and create query
       const connection = await db.connect();
       const updateProductQuantityInOrder = await connection.query(
-        'UPDATE product_orders SET quantity = $1 WHERE order_id = $2 AND product_id = $3 RETURNING *',
+        'UPDATE order_products SET quantity = $1 WHERE order_id = $2 AND product_id = $3 RETURNING *',
         [quantity, order_id, product_id]
       );
       // release connection

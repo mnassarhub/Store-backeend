@@ -3,7 +3,7 @@ import OrderModel from '../model/orders.model';
 
 const orderModel = new OrderModel();
 
-// create order
+//    create order
 export const createOrder = async (req: Request, res: Response) => {
   try {
     const createOrder = await orderModel.createOrder(
@@ -106,7 +106,7 @@ export const orderCompleted = async (req: Request, res: Response) => {
 };
 
 //    delete order
-export const deleteOrder = async (req: Request, res: Response) => {
+export const cancelOrder = async (req: Request, res: Response) => {
   try {
     const deletedOrder = await orderModel.cancelOrder(
       req.params.user_id as unknown as string,
@@ -122,7 +122,7 @@ export const deleteOrder = async (req: Request, res: Response) => {
   }
 };
 
-//   get all products for order
+//    get all products for order
 export const getAllProductsForOrder = async (req: Request, res: Response) => {
   try {
     const allProducts = await orderModel.getAllProductsForOrder(
@@ -145,7 +145,7 @@ export const getAllProductsForOrder = async (req: Request, res: Response) => {
   }
 };
 
-//  add product to order
+//    add product to order
 export const addProductToOrder = async (req: Request, res: Response) => {
   try {
     const addedProduct = await orderModel.addProductToOrder(
@@ -163,7 +163,7 @@ export const addProductToOrder = async (req: Request, res: Response) => {
   }
 };
 
-// delete product from order
+//    delete product from order
 export const deleteProductFromOrder = async (req: Request, res: Response) => {
   try {
     const deletedProduct = await orderModel.deleteProductFromOrder(
@@ -180,7 +180,7 @@ export const deleteProductFromOrder = async (req: Request, res: Response) => {
   }
 };
 
-// update product quantity in order
+//    update product quantity in order
 export const updateProductQuantityInOrder = async (
   req: Request,
   res: Response

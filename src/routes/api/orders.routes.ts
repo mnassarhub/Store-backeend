@@ -4,15 +4,15 @@ import authentication from '../../middleware/authentication.middleware';
 
 const routes = Router();
 
-routes.post('/:user_id/create/', authentication, controllers.createOrder);
-routes.get('/:user_id/all/', authentication, controllers.getAllOrders);
-routes.get('/:user_id/active/', authentication, controllers.getAllActiveOrders);
+routes.post('/create/:user_id/', authentication, controllers.createOrder);
+routes.get('/getAll/:user_id/', authentication, controllers.getAllOrders);
+routes.get('/active/:user_id/', authentication, controllers.getAllActiveOrders);
 routes.get(
-  '/:user_id/complete/',
+  '/complete/:user_id/',
   authentication,
   controllers.getAllCompleteOrders
 );
 routes.patch('/:user_id', authentication, controllers.orderCompleted);
-routes.delete('/:user_id', authentication, controllers.deleteOrder);
+routes.delete('/:user_id', authentication, controllers.cancelOrder);
 
 export default routes;
