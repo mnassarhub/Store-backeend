@@ -42,6 +42,7 @@ app.use(async (_req: Request, res: Response) => {
 dotenv.config();
 const port = parseInt(process.env.PORT as string, 10) || 3000;
 app.listen(port, function () {
+  // eslint-disable-next-line no-console
   console.log(`starting app on: http://localhost:${port}`);
 });
 

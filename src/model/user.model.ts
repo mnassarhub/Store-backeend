@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 import UserType from '../types/user.types';
 import db from '../database/database';
 import dotenv from 'dotenv';

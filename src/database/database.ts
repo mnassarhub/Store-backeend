@@ -13,6 +13,7 @@ const {
   POSTGRES_PORT
 } = process.env;
 
+// eslint-disable-next-line no-console
 console.log(
   `You access ${
     NODE_ENV === 'dev'

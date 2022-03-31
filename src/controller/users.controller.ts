@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 import { Request, Response, NextFunction } from 'express';
 import UserModel from '../model/user.model';
 import jwt from 'jsonwebtoken';

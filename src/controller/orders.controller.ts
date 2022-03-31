@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 import { Request, Response } from 'express';
 import OrderModel from '../model/orders.model';
 
