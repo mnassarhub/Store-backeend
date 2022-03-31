@@ -64,9 +64,13 @@ describe('order model', () => {
   afterAll(async () => {
     const connection = await db.connect();
     const deleteTestDataInproductOrdersTable = 'DELETE FROM order_products;';
-    const deleteTestData = 'DELETE FROM orders;';
+    const deleteTestDataInOrderTable = 'DELETE FROM orders;';
+    const deleteTestDataInUsersTable = 'DELETE FROM users;';
+    const deleteTestDataInProductsTable = 'DELETE FROM Products;';
     await connection.query(deleteTestDataInproductOrdersTable);
-    await connection.query(deleteTestData);
+    await connection.query(deleteTestDataInOrderTable);
+    await connection.query(deleteTestDataInUsersTable);
+    await connection.query(deleteTestDataInProductsTable);
     connection.release();
   });
 

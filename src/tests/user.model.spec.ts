@@ -91,7 +91,7 @@ describe('user model', () => {
 
     it('Should Successfully Pass Test and return all available users in DB', async () => {
       const users = await userModel.getUsers();
-      expect(users.length).toBe(3);
+      expect(users.length).toBe(2);
     });
 
     it('Should Successfully Pass Test and return testUser when called with ID', async () => {

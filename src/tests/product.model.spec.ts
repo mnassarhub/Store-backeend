@@ -58,7 +58,7 @@ describe('product model', () => {
 
     it('Should Successfully Pass Test and return all available products in DB', async () => {
       const products = await productModel.getAllProducts();
-      expect(products.length).toBe(3);
+      expect(products.length).toBe(2);
     });
 
     it('Should Successfully Pass Test and return testProduct when called with ID', async () => {
