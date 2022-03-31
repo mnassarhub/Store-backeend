@@ -1,5 +1,4 @@
 import OrdertType from '../types/order.types';
-import ProductOrdersType from '../types/productOrders.type';
 import OrderModel from '../model/orders.model';
 import UserType from '../types/user.types';
 import UserModel from '../model/user.model';

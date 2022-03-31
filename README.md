@@ -88,6 +88,11 @@ src
         products.controller.ts
         users.controller.ts
     database
+        schema
+            order-products-table.sql
+            orders-table.sql
+            products-table.sql
+            users-table.sql
         database.ts
     helpers
         reporter.ts

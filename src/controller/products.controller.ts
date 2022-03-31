@@ -11,7 +11,7 @@ export const createRequestedProduct = async (req: Request, res: Response) => {
       message: 'New product Successfully Created with down data',
       data: { ...newProduct }
     });
-    console.table(newProduct);
+    // console.table(newProduct);
   } catch (error) {
     throw error;
   }
@@ -25,7 +25,7 @@ export const getAllProducts = async (req: Request, res: Response) => {
       message: 'Products retrived successfuly',
       data: products
     });
-    console.table(products);
+    // console.table(products);
   } catch (error) {
     throw error;
   }
@@ -41,7 +41,7 @@ export const getSpecificProduct = async (req: Request, res: Response) => {
       message: 'Product retrived successfuly',
       data: product
     });
-    console.table(product);
+    // console.table(product);
   } catch (error) {
     throw error;
   }
@@ -58,7 +58,7 @@ export const updateProduct = async (req: Request, res: Response) => {
       message: 'Product successfuly updated',
       data: product
     });
-    console.table(product);
+    // console.table(product);
   } catch (error) {
     throw error;
   }
@@ -74,7 +74,7 @@ export const deleteProduct = async (req: Request, res: Response) => {
       message: 'Product successfuly deleted',
       data: product
     });
-    console.table(product);
+    // console.table(product);
   } catch (error) {
     throw error;
   }

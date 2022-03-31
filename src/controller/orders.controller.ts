@@ -13,7 +13,7 @@ export const createOrder = async (req: Request, res: Response) => {
       message: 'New Order Successfully Created with down data',
       data: createOrder
     });
-    console.table(createOrder);
+    // console.table(createOrder);
   } catch (error) {
     throw error;
   }
@@ -35,7 +35,7 @@ export const getAllOrders = async (req: Request, res: Response) => {
         message: 'All Orders retrived successfuly',
         data: allOrders
       });
-      console.table(allOrders);
+      // console.table(allOrders);
     }
   } catch (error) {
     throw error;
@@ -58,7 +58,7 @@ export const getAllActiveOrders = async (req: Request, res: Response) => {
         message: 'Active Orders retrived successfuly',
         data: activeOrders
       });
-      console.table(activeOrders);
+      // console.table(activeOrders);
     }
   } catch (error) {
     throw error;
@@ -81,7 +81,7 @@ export const getAllCompleteOrders = async (req: Request, res: Response) => {
         message: 'Complete Orders retrived successfuly',
         data: completeOrders
       });
-      console.table(completeOrders);
+      // console.table(completeOrders);
     }
   } catch (error) {
     throw error;
@@ -99,7 +99,7 @@ export const orderCompleted = async (req: Request, res: Response) => {
       message: 'Order Successfully Completed',
       data: order
     });
-    console.table(order);
+    // console.table(order);
   } catch (error) {
     throw error;
   }
@@ -116,7 +116,7 @@ export const cancelOrder = async (req: Request, res: Response) => {
       message: 'Order successfuly deleted',
       data: deletedOrder
     });
-    console.table(deletedOrder);
+    // console.table(deletedOrder);
   } catch (error) {
     throw error;
   }
@@ -138,7 +138,7 @@ export const getAllProductsForOrder = async (req: Request, res: Response) => {
         message: 'All Products retrived successfuly',
         data: allProducts
       });
-      console.table(allProducts);
+      // console.table(allProducts);
     }
   } catch (error) {
     throw error;
@@ -157,7 +157,7 @@ export const addProductToOrder = async (req: Request, res: Response) => {
       message: 'Product Successfully Added to Order',
       data: addedProduct
     });
-    console.table(addedProduct);
+    // console.table(addedProduct);
   } catch (error) {
     throw error;
   }
@@ -174,7 +174,7 @@ export const deleteProductFromOrder = async (req: Request, res: Response) => {
       message: 'Product Successfully Deleted from Order',
       data: deletedProduct
     });
-    console.table(deletedProduct);
+    // console.table(deletedProduct);
   } catch (error) {
     throw error;
   }
@@ -195,7 +195,7 @@ export const updateProductQuantityInOrder = async (
       message: 'Product Quantity Successfully Updated in Order',
       data: updatedProduct
     });
-    console.table(updatedProduct);
+    // console.table(updatedProduct);
   } catch (error) {
     throw error;
   }

@@ -20,7 +20,7 @@ export const createRequestedUser = async (req: Request, res: Response) => {
         message: 'New User Successfully Created with down data',
         data: { ...newUser }
       });
-      console.table(newUser);
+      // console.table(newUser);
     } else {
       // if email exists in our database
       res.json({
@@ -41,7 +41,7 @@ export const getUsers = async (req: Request, res: Response) => {
       message: 'Users retrived successfuly',
       data: users
     });
-    console.table(users);
+    // console.table(users);
   } catch (error) {
     throw error;
   }
@@ -57,7 +57,7 @@ export const getSpecificUser = async (req: Request, res: Response) => {
       message: 'User retrived successfuly',
       data: user
     });
-    console.table(user);
+    // console.table(user);
   } catch (error) {
     throw error;
   }
@@ -74,7 +74,7 @@ export const updateUser = async (req: Request, res: Response) => {
       message: 'User successfuly updated',
       data: user
     });
-    console.table(user);
+    // console.table(user);
   } catch (error) {
     throw error;
   }
@@ -88,7 +88,7 @@ export const deleteUser = async (req: Request, res: Response) => {
       message: 'User successfuly deleted',
       data: user
     });
-    console.table(user);
+    // console.table(user);
   } catch (error) {
     throw error;
   }

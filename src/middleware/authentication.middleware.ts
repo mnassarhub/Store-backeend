@@ -4,12 +4,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// handle authentication errors
-const handleAuthenticationError = (next: NextFunction) => {
-  const error = new Error(`Unable to login: pls try again`);
-  next(error);
-};
-
 // validate token
 const validateToken = (req: Request, res: Response, next: NextFunction) => {
   try {
