@@ -191,8 +191,6 @@ to build the project and use it do the following orders in terminal:
 
 - To create the tables of database by migrate: `db-migrate up` or `npm run migrateUp`
 
-- to drop tables: `db-migrate up`
-
 - to run test: `npm run test`
 
 - to start project development: `npm run dev`
