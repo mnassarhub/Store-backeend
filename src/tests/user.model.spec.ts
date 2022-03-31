@@ -1,15 +1,13 @@
-import UserType from '../../types/user.types';
-import UserModel from '../../model/user.model';
-import ProductType from '../../types/product.types';
-import ProductModel from '../../model/product.model';
-import db from '../../database/database';
+import UserType from '../types/user.types';
+import UserModel from '../model/user.model';
+import db from '../database/database';
 
 const userModel = new UserModel();
 const user = {
-  email: 'test@test.com',
-  firstname: 'userFname',
-  lastname: 'userLname',
-  username: 'userName',
+  email: 'test100@test.com',
+  first_name: 'tessst',
+  last_name: 'userLname',
+  user_name: 'userName',
   password: 'test123'
 } as UserType;
 
@@ -59,9 +57,9 @@ describe('user model', () => {
         user.password as string
       );
       expect(authenticatedUser?.email).toBe(user.email);
-      expect(authenticatedUser?.firstname).toBe(user.firstname);
-      expect(authenticatedUser?.lastname).toBe(user.lastname);
-      expect(authenticatedUser?.username).toBe(user.username);
+      expect(authenticatedUser?.first_name).toBe(user.first_name);
+      expect(authenticatedUser?.last_name).toBe(user.last_name);
+      expect(authenticatedUser?.user_name).toBe(user.user_name);
     });
 
     it('Should Successfully Pass Test if return null for wrong credentials', async () => {
@@ -77,32 +75,32 @@ describe('user model', () => {
     it('Should Successfully Pass Test return a new user', async () => {
       const createdUser = await userModel.createUser({
         email: 'create_test@test.com',
-        firstname: 'userFname1',
-        lastname: 'userLname1',
-        username: 'userName1',
+        first_name: 'userFname1',
+        last_name: 'userLname1',
+        user_name: 'userName1',
         password: 'test123'
       } as UserType);
       expect(createdUser).toEqual({
         id: createdUser.id,
         email: 'create_test@test.com',
-        firstname: 'userFname1',
-        lastname: 'userLname1',
-        username: 'userName1'
+        first_name: 'userFname1',
+        last_name: 'userLname1',
+        user_name: 'userName1'
       } as UserType);
     });
 
     it('Should Successfully Pass Test and return all available users in DB', async () => {
       const users = await userModel.getUsers();
-      expect(users.length).toBe(2);
+      expect(users.length).toBe(3);
     });
 
     it('Should Successfully Pass Test and return testUser when called with ID', async () => {
       const returnedUser = await userModel.getSpecificUser(user.id as string);
       expect(returnedUser.id).toBe(user.id);
       expect(returnedUser.email).toBe(user.email);
-      expect(returnedUser.firstname).toBe(user.firstname);
-      expect(returnedUser.lastname).toBe(user.lastname);
-      expect(returnedUser.username).toBe(user.username);
+      expect(returnedUser.first_name).toBe(user.first_name);
+      expect(returnedUser.last_name).toBe(user.last_name);
+      expect(returnedUser.user_name).toBe(user.user_name);
     });
 
     it('Should Successfully Pass Test and return user with edited attributes', async () => {
@@ -111,17 +109,17 @@ describe('user model', () => {
         {
           ...user,
           email: 'test22@test.com',
-          firstname: 'userFname22',
-          lastname: 'userLname22',
-          username: 'userName22',
+          first_name: 'userFname22',
+          last_name: 'userLname22',
+          user_name: 'userName22',
           password: 'test12322'
         }
       );
       expect(updatedUser.id).toBe(user.id);
       expect(updatedUser.email).toBe('test22@test.com');
-      expect(updatedUser.firstname).toBe('userFname22');
-      expect(updatedUser.lastname).toBe('userLname22');
-      expect(updatedUser.username).toBe('userName22');
+      expect(updatedUser.first_name).toBe('userFname22');
+      expect(updatedUser.last_name).toBe('userLname22');
+      expect(updatedUser.user_name).toBe('userName22');
     });
 
     it('Should Successfully Pass Test and delete user from DB', async () => {

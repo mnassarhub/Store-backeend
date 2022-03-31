@@ -1,10 +1,10 @@
-import ProductType from '../../types/product.types';
-import ProductModel from '../../model/product.model';
-import db from '../../database/database';
+import ProductType from '../types/product.types';
+import ProductModel from '../model/product.model';
+import db from '../database/database';
 
 const productModel = new ProductModel();
 const productTest = {
-  productname: 'book',
+  product_name: 'book',
   price: 10
 } as ProductType;
 
@@ -46,12 +46,12 @@ describe('product model', () => {
   describe('test product model process', () => {
     it('Should Successfully Pass Test return a new product', async () => {
       const createdProduct = await productModel.createProduct({
-        productname: 'test1',
+        product_name: 'test1',
         price: 10
       } as ProductType);
       expect(createdProduct).toEqual({
         id: createdProduct.id,
-        productname: 'test1',
+        product_name: 'test1',
         price: 10
       } as ProductType);
     });
@@ -66,7 +66,7 @@ describe('product model', () => {
         productTest.id as string
       );
       expect(returnedProduct.id).toBe(productTest.id);
-      expect(returnedProduct.productname).toBe(productTest.productname);
+      expect(returnedProduct.product_name).toBe(productTest.product_name);
       expect(returnedProduct.price).toBe(productTest.price);
     });
 
@@ -79,7 +79,7 @@ describe('product model', () => {
         }
       );
       expect(updatedProduct.id).toBe(productTest.id);
-      expect(updatedProduct.productname).toBe(productTest.productname);
+      expect(updatedProduct.product_name).toBe(productTest.product_name);
       expect(updatedProduct.price).toBe(22);
     });
 

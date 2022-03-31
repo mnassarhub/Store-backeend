@@ -37,6 +37,7 @@ class OrderModel {
       throw `Unable to get all orders for user ${user_id} according to ${error}`;
     }
   }
+
   //    get all active orders for user (user cart)
   async getActiveOrders(user_id: string): Promise<OrderType[]> {
     try {
