@@ -6,19 +6,24 @@
 
 2-Project build depended on.
 
-3-Project Structure.
+3-Database diagram
 
-4-How To Use.
+4-Project Structure.
 
-5-Functionality and Endpoints.
+5-How To Use.
 
-6-Development.
+6-Functionality and Endpoints.
 
-## Description:
+7-Development.
+
+## Description
 
 This is a backend API build in Nodejs for an online store. It exposes a RESTful API that will be used by the frontend developer on the frontend.
 
 The database schema and and API route information can be found in the [REQUIREMENT.md](REQUIREMENTS.md)
+
+## Database diagram
+
 ![database_diagram](database_diagram.jpg)
 
 ## Project build depended on
@@ -67,9 +72,12 @@ migrations
         20220326180329-products-table-up.sql
         20220326180346-orders-table-down.sql
         20220326180346-orders-table-up.sql
+        20220331093311-order-products-table-down.sql
+        20220331093311-order-products-table-up.sql
     20220326180310-users-table.js
     20220326180329-products-table.js
     20220326180346-orders-table.js
+    20220331093311-order-products-table.js
 node_modules
 spec
     support
@@ -81,6 +89,8 @@ src
         users.controller.ts
     database
         database.ts
+    helpers
+        reporter.ts
     middleware
         authentication.middleware.ts
         emailValidator.middleware.ts
@@ -90,13 +100,12 @@ src
         user.model.ts
     routes
         api
+            cart.routes.ts
             orders.routes.ts
             products.routes.ts
             users.routes.ts
         main.routes.ts
     tests
-        helpers
-            reporter.ts
         order.model.spec.ts
         product.model.spec.ts
         routes.spec.ts
@@ -105,6 +114,7 @@ src
     types
         order.types.ts
         product.types.ts
+        productOrders.type.ts
         user.types.ts
     server.ts
 .dockerignore
@@ -113,6 +123,7 @@ src
 .prettierignore
 .prettierrrc
 CODEOWNERS
+database_diagram.jpg
 database.json
 docker-compose.yml
 Dockerfile
