@@ -6,7 +6,7 @@ class OrderModel {
   //    create order
   async createOrder(user_id: string): Promise<OrderType> {
     try {
-      // conect with data base and create query
+      // connect with data base and create query
       const connection = await db.connect();
       const createOrder = await connection.query(
         'INSERT INTO orders (user_id, status) VALUES ($1, $2) RETURNING *',
@@ -17,14 +17,14 @@ class OrderModel {
       // return created order
       return createOrder.rows[0];
     } catch (error) {
-      throw `Unable to create order accourding to ${error}`;
+      throw `Unable to create order according to ${error}`;
     }
   }
 
   //    get all orders for user
   async getAllOrders(user_id: string): Promise<OrderType[]> {
     try {
-      // conect with data base and create query
+      // connect with data base and create query
       const connection = await db.connect();
       const getActiveOrders = await connection.query(
         'SELECT * FROM orders WHERE user_id = $1 ',
@@ -41,7 +41,7 @@ class OrderModel {
   //    get all active orders for user (user cart)
   async getActiveOrders(user_id: string): Promise<OrderType[]> {
     try {
-      // conect with data base and create query
+      // connect with data base and create query
       const connection = await db.connect();
       const getActiveOrders = await connection.query(
         'SELECT * FROM orders WHERE user_id = $1 AND status = $2',
@@ -58,7 +58,7 @@ class OrderModel {
   //    get all complete orders for user
   async getCompleteOrders(user_id: string): Promise<OrderType[]> {
     try {
-      // conect with data base and create query
+      // connect with data base and create query
       const connection = await db.connect();
       const getActiveOrders = await connection.query(
         'SELECT * FROM orders WHERE user_id = $1 AND status = $2',
@@ -75,7 +75,7 @@ class OrderModel {
   //    update order
   async orderCompleted(user_id: string, id: string): Promise<OrderType> {
     try {
-      // conect with data base and create query
+      // connect with data base and create query
       const connection = await db.connect();
       const updateOrder = await connection.query(
         'UPDATE orders SET status=$1 WHERE id=$2 AND user_id=$3 RETURNING *',
@@ -86,14 +86,14 @@ class OrderModel {
       // return updated order
       return updateOrder.rows[0];
     } catch (error) {
-      throw `Unable to update order ${id} accourding to ${error}`;
+      throw `Unable to update order ${id} according to ${error}`;
     }
   }
 
   //    cancel order
   async cancelOrder(user_id: string, id: string): Promise<OrderType> {
     try {
-      // conect with data base and create query
+      // connect with data base and create query
       const connection = await db.connect();
       const deleteOrder = await connection.query(
         'DELETE FROM orders WHERE id=($1) AND user_id=($2) AND status=($3) RETURNING *',
@@ -104,14 +104,14 @@ class OrderModel {
       // return deleted order
       return deleteOrder.rows[0];
     } catch (error) {
-      throw `Unable to delete Order ${id} accourding to ${error}`;
+      throw `Unable to delete Order ${id} according to ${error}`;
     }
   }
 
   //   get all products for order
   async getAllProductsForOrder(order_id: string): Promise<ProductOrdersType[]> {
     try {
-      // conect with data base and create query
+      // connect with data base and create query
       const connection = await db.connect();
       const getProductsForOrder = await connection.query(
         'SELECT * FROM order_products WHERE order_id = $1',
@@ -132,7 +132,7 @@ class OrderModel {
     quantity: number
   ): Promise<ProductOrdersType> {
     try {
-      // conect with data base and create query
+      // connect with data base and create query
       const connection = await db.connect();
       const addProductToOrder = await connection.query(
         'INSERT INTO order_products (order_id, product_id, quantity) VALUES ($1, $2, $3) RETURNING *',
@@ -153,7 +153,7 @@ class OrderModel {
     product_id: string
   ): Promise<ProductOrdersType> {
     try {
-      // conect with data base and create query
+      // connect with data base and create query
       const connection = await db.connect();
       const deleteProductFromOrder = await connection.query(
         'DELETE FROM order_products WHERE order_id = $1 AND product_id = $2 RETURNING *',
@@ -175,7 +175,7 @@ class OrderModel {
     quantity: number
   ): Promise<ProductOrdersType> {
     try {
-      // conect with data base and create query
+      // connect with data base and create query
       const connection = await db.connect();
       const updateProductQuantityInOrder = await connection.query(
         'UPDATE order_products SET quantity = $1 WHERE order_id = $2 AND product_id = $3 RETURNING *',

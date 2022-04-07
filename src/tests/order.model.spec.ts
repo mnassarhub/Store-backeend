@@ -1,4 +1,4 @@
-import OrdertType from '../types/order.types';
+import OrderType from '../types/order.types';
 import ProductOrdersType from '../types/productOrders.type';
 import OrderModel from '../model/orders.model';
 import UserType from '../types/user.types';
@@ -27,15 +27,15 @@ describe('order model', () => {
 
   const order = {
     status: 'active'
-  } as OrdertType;
+  } as OrderType;
 
   const orderToDelete = {
     status: 'active'
-  } as OrdertType;
+  } as OrderType;
 
   const orderToAddProducts = {
     status: 'active'
-  } as OrdertType;
+  } as OrderType;
 
   beforeAll(async () => {
     const createUser = await userModel.createUser(user);
@@ -125,7 +125,7 @@ describe('order model', () => {
         id: createdorder.id,
         user_id: user.id,
         status: 'active'
-      } as OrdertType);
+      } as OrderType);
     });
 
     it('Should Successfully Pass Test and return all available orders in DB', async () => {
@@ -151,7 +151,7 @@ describe('order model', () => {
         id: completeOrder.id,
         user_id: user.id,
         status: 'complete'
-      } as OrdertType);
+      } as OrderType);
     });
 
     it('Should Successfully Pass Test and return complete orders', async () => {
@@ -170,7 +170,7 @@ describe('order model', () => {
         id: cancelOrder.id,
         user_id: user.id,
         status: 'active'
-      } as OrdertType);
+      } as OrderType);
     });
 
     it('Should Successfully Pass Test and return product added to order', async () => {

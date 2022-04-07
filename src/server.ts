@@ -38,7 +38,7 @@ app.use(async (_req: Request, res: Response) => {
     Requested Page Not Found`);
 });
 
-// server configrations
+// server configurations
 dotenv.config();
 const port = parseInt(process.env.PORT as string, 10) || 3000;
 app.listen(port, function () {

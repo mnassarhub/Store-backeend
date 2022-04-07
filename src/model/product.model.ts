@@ -5,7 +5,7 @@ class ProductModel {
   // create product
   async createProduct(p: ProductType): Promise<ProductType> {
     try {
-      // conect with data base and create query
+      // connect with data base and create query
       const connection = await db.connect();
       const newProduct = await connection.query(
         'INSERT INTO products (product_name, price) VALUES ($1, $2) RETURNING *',
@@ -16,13 +16,13 @@ class ProductModel {
       // return created products
       return newProduct.rows[0];
     } catch (error) {
-      throw `Unable to create ${p.product_name} accourding to ${error}`;
+      throw `Unable to create ${p.product_name} according to ${error}`;
     }
   }
   //    get all products
   async getAllProducts(): Promise<ProductType[]> {
     try {
-      // conect with data base and create query
+      // connect with data base and create query
       const connection = await db.connect();
       const getAllProducts = await connection.query('SELECT * FROM products');
       connection.release();
@@ -35,7 +35,7 @@ class ProductModel {
   //    get specific product
   async getSpecificProduct(id: string): Promise<ProductType> {
     try {
-      // conect with data base and create query
+      // connect with data base and create query
       const connection = await db.connect();
       const getProduct = await connection.query(
         'SELECT * FROM products WHERE id=($1)',
@@ -46,13 +46,13 @@ class ProductModel {
       // return created product
       return getProduct.rows[0];
     } catch (error) {
-      throw `Unable to find product ${id} accourding to ${error} `;
+      throw `Unable to find product ${id} according to ${error} `;
     }
   }
   //    update product
   async updateProduct(id: string, p: ProductType): Promise<ProductType> {
     try {
-      // conect with data base and create query
+      // connect with data base and create query
       const connection = await db.connect();
       const updateProduct = await connection.query(
         'UPDATE products SET product_name=$1, price=$2 WHERE id=$3 RETURNING *',
@@ -63,13 +63,13 @@ class ProductModel {
       // return created product
       return updateProduct.rows[0];
     } catch (error) {
-      throw `Unable to update product ${p.product_name} accourding to ${error}`;
+      throw `Unable to update product ${p.product_name} according to ${error}`;
     }
   }
   //    delete product
   async deleteProduct(id: string): Promise<ProductType> {
     try {
-      // conect with data base and create query
+      // connect with data base and create query
       const connection = await db.connect();
       const updateProduct = await connection.query(
         'DELETE FROM products WHERE id=($1) RETURNING *',
@@ -80,7 +80,7 @@ class ProductModel {
       // return created product
       return updateProduct.rows[0];
     } catch (error) {
-      throw `Unable to delete product ${id} accourding to ${error}`;
+      throw `Unable to delete product ${id} according to ${error}`;
     }
   }
 }

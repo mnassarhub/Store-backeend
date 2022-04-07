@@ -1,4 +1,4 @@
-import OrdertType from '../types/order.types';
+import OrderType from '../types/order.types';
 import OrderModel from '../model/orders.model';
 import UserType from '../types/user.types';
 import UserModel from '../model/user.model';
@@ -43,15 +43,15 @@ const orderModel = new OrderModel();
 
 const order = {
   status: 'active'
-} as OrdertType;
+} as OrderType;
 
 const orderToDelete = {
   status: 'active'
-} as OrdertType;
+} as OrderType;
 
 const orderToAddProducts = {
   status: 'active'
-} as OrdertType;
+} as OrderType;
 // test api routes
 describe('test api routes', () => {
   beforeAll(async () => {
@@ -289,7 +289,7 @@ describe('test api routes', () => {
         .set('Authorization', `Bearer ${token}`)
         .send({
           user_id: user.id
-        } as OrdertType);
+        } as OrderType);
       expect(res.status).toBe(200);
       expect(res.body.data.length).toBe(1);
     });

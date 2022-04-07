@@ -12,8 +12,8 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
       const bearer = authenticateHeader.split(' ')[0].toLowerCase();
       const token = authenticateHeader.split(' ')[1];
       if (token && bearer === 'bearer') {
-        const tokenSeecret = process.env.SECRET_TOKEN;
-        const decode = jwt.verify(token, tokenSeecret as unknown as string);
+        const tokenSecret = process.env.SECRET_TOKEN;
+        const decode = jwt.verify(token, tokenSecret as unknown as string);
         if (decode) {
           next();
         } else {

@@ -33,7 +33,7 @@ export const getAllOrders = async (req: Request, res: Response) => {
       });
     } else {
       res.json({
-        message: 'All Orders retrived successfuly',
+        message: 'All Orders retrieved successfully',
         data: allOrders
       });
       // console.table(allOrders);
@@ -56,7 +56,7 @@ export const getAllActiveOrders = async (req: Request, res: Response) => {
       });
     } else {
       res.json({
-        message: 'Active Orders retrived successfuly',
+        message: 'Active Orders retrieved successfully',
         data: activeOrders
       });
       // console.table(activeOrders);
@@ -79,7 +79,7 @@ export const getAllCompleteOrders = async (req: Request, res: Response) => {
       });
     } else {
       res.json({
-        message: 'Complete Orders retrived successfuly',
+        message: 'Complete Orders retrieved successfully',
         data: completeOrders
       });
       // console.table(completeOrders);
@@ -114,7 +114,7 @@ export const cancelOrder = async (req: Request, res: Response) => {
       req.body.id as unknown as string
     );
     res.json({
-      message: 'Order successfuly deleted',
+      message: 'Order successfully deleted',
       data: deletedOrder
     });
     // console.table(deletedOrder);
@@ -136,7 +136,7 @@ export const getAllProductsForOrder = async (req: Request, res: Response) => {
       });
     } else {
       res.json({
-        message: 'All Products retrived successfuly',
+        message: 'All Products retrieved successfully',
         data: allProducts
       });
       // console.table(allProducts);

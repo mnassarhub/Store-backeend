@@ -39,7 +39,7 @@ export const getUsers = async (req: Request, res: Response) => {
   try {
     const users = await userModel.getUsers();
     res.json({
-      message: 'Users retrived successfuly',
+      message: 'Users retrieved successfully',
       data: users
     });
     // console.table(users);
@@ -55,7 +55,7 @@ export const getSpecificUser = async (req: Request, res: Response) => {
       req.params.id as unknown as string
     );
     res.json({
-      message: 'User retrived successfuly',
+      message: 'User retrieved successfully',
       data: user
     });
     // console.table(user);
@@ -72,7 +72,7 @@ export const updateUser = async (req: Request, res: Response) => {
       req.body
     );
     res.json({
-      message: 'User successfuly updated',
+      message: 'User successfully updated',
       data: user
     });
     // console.table(user);
@@ -86,7 +86,7 @@ export const deleteUser = async (req: Request, res: Response) => {
   try {
     const user = await userModel.deleteUser(req.params.id as unknown as string);
     res.json({
-      message: 'User successfuly deleted',
+      message: 'User successfully deleted',
       data: user
     });
     // console.table(user);
@@ -104,8 +104,8 @@ export const authenticate = async (
   try {
     const { email, password } = req.body;
     const user = await userModel.authenticate(email, password);
-    const tokenSeecret = process.env.SECRET_TOKEN;
-    const token = jwt.sign({ user }, tokenSeecret as unknown as string);
+    const tokenSecret = process.env.SECRET_TOKEN;
+    const token = jwt.sign({ user }, tokenSecret as unknown as string);
     if (!user) {
       return res.status(401).json({
         status: 'error',

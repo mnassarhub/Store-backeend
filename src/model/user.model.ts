@@ -16,7 +16,7 @@ class UserModel {
   // create user
   async createUser(u: UserType): Promise<UserType> {
     try {
-      // conect with data base and create query
+      // connect with data base and create query
       const connection = await db.connect();
       const newUser = await connection.query(
         'INSERT INTO users (email, first_name, last_name, user_name, password) VALUES ($1, $2, $3, $4, $5) RETURNING id, email, first_name, last_name, user_name',
@@ -33,7 +33,7 @@ class UserModel {
   //    get all users
   async getUsers(): Promise<UserType[]> {
     try {
-      // conect with data base and create query
+      // connect with data base and create query
       const connection = await db.connect();
       const getUsers = await connection.query(
         'SELECT id, email, first_name, last_name, user_name FROM users'
@@ -48,7 +48,7 @@ class UserModel {
   //    get specific user
   async getSpecificUser(id: string): Promise<UserType> {
     try {
-      // conect with data base and create query
+      // connect with data base and create query
       const connection = await db.connect();
       const getUser = await connection.query(
         'SELECT id, email, first_name, last_name, user_name FROM users WHERE id=($1)',
@@ -59,13 +59,13 @@ class UserModel {
       // return created user
       return getUser.rows[0];
     } catch (error) {
-      throw `Unable to find user ${id} accourding to ${error} `;
+      throw `Unable to find user ${id} according to ${error} `;
     }
   }
   //    update user
   async updateUser(id: string, u: UserType): Promise<UserType> {
     try {
-      // conect with data base and create query
+      // connect with data base and create query
       const connection = await db.connect();
       const updateUser = await connection.query(
         'UPDATE users SET email=$1, first_name=$2, last_name=$3, user_name=$4, password=$5 WHERE id=$6 RETURNING id, email, first_name, last_name, user_name',
@@ -76,13 +76,13 @@ class UserModel {
       // return created user
       return updateUser.rows[0];
     } catch (error) {
-      throw `Unable to update user ${u.user_name} accourding to ${error}`;
+      throw `Unable to update user ${u.user_name} according to ${error}`;
     }
   }
   //    delete user
   async deleteUser(id: string): Promise<UserType> {
     try {
-      // conect with data base and create query
+      // connect with data base and create query
       const connection = await db.connect();
       const deleteUser = await connection.query(
         'DELETE FROM users WHERE id=($1) RETURNING *',
@@ -93,7 +93,7 @@ class UserModel {
       // return deleted user
       return deleteUser.rows[0];
     } catch (error) {
-      throw `Unable to delete user ${id} accourding to ${error}`;
+      throw `Unable to delete user ${id} according to ${error}`;
     }
   }
   // authenticate user
@@ -124,7 +124,7 @@ class UserModel {
       connection.release();
       return null;
     } catch (error) {
-      throw `Unable to login accourding to ${error}`;
+      throw `Unable to login according to ${error}`;
     }
   }
 }

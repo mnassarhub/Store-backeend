@@ -23,7 +23,7 @@ export const getAllProducts = async (req: Request, res: Response) => {
   try {
     const products = await productModel.getAllProducts();
     res.json({
-      message: 'Products retrived successfuly',
+      message: 'Products retrieved successfully',
       data: products
     });
     // console.table(products);
@@ -39,7 +39,7 @@ export const getSpecificProduct = async (req: Request, res: Response) => {
       req.params.id as unknown as string
     );
     res.json({
-      message: 'Product retrived successfuly',
+      message: 'Product retrieved successfully',
       data: product
     });
     // console.table(product);
@@ -56,7 +56,7 @@ export const updateProduct = async (req: Request, res: Response) => {
       req.body
     );
     res.json({
-      message: 'Product successfuly updated',
+      message: 'Product successfully updated',
       data: product
     });
     // console.table(product);
@@ -72,7 +72,7 @@ export const deleteProduct = async (req: Request, res: Response) => {
       req.params.id as unknown as string
     );
     res.json({
-      message: 'Product successfuly deleted',
+      message: 'Product successfully deleted',
       data: product
     });
     // console.table(product);
